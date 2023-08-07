@@ -1,0 +1,2 @@
+def printth():
+    print("lmao")

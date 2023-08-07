@@ -1,0 +1,163 @@
+<My_manager>:
+    HomeScreen:
+    OptionOne:
+    Comment:
+    SearchFor:
+    All:
+
+<HomeScreen>:
+    name: "home"
+    BoxLayout:
+        orientation: "vertical"
+        canvas:
+            Color:
+                rgb: .49, .44, .60
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        Label:
+            id: MM
+            text: "Welcome to the The Recipe Saver!"
+            font_size: 27
+        Button:
+            text: "Add Recipies"
+            on_press: app.root.current= "one"
+            pos_hint: { "x": .25}
+            size_hint: .5, .5
+        Button:
+            text: "Make a comment"
+            on_press: app.root.current = "comments"
+            pos_hint: { "x": .25}
+            size_hint: .5, .5
+        Button:
+            text: "Search"
+            on_press: app.root.current = "search"
+            pos_hint: { "x": .25}
+            size_hint: .5, .5
+        Button:
+            text: "Show all Recipes"
+            on_press: app.root.current = "alli"
+            pos_hint: { "x": .25}
+            size_hint: .5, .5
+        SaveButton:
+            text: "Upload To Drive"
+            pos_hint: { "x": .25}
+            size_hint: .5,.5
+            on_press: self.UploadToServer()
+            on_press: MM.text = "Uploaded"
+
+<OptionOne>:
+    name: "one"
+    BoxLayout:
+
+        orientation: "vertical"
+        canvas:
+            Color:
+                rgb: .49, .44, .60
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Please write the the date added(x/x/xx), link, and name of recipe"
+            font_size:22
+            size_hint: .5,.01
+            pos_hint:{"x":.25}
+        Label:
+            text: "Inorder for other features to run smoothly, please enter in the given order"
+            size_hint: .5,.005
+            pos_hint:{"x":.25}
+        TextInput:
+            id: input
+            size_hint: .5,.05
+            hint_text: "Seperate each with a -"
+            multiline: False
+            pos_hint:{"x":.25}
+        EnterButton:
+            id: Enter_Button
+            text: "Enter"
+            size_hint: .5, .05
+            pos_hint:{"x":.25}
+            on_press: self.save(input.text)  #self.save grabs from the save function in the main file
+            on_release: input.text = ""
+        Button:
+            text: "Back To Home"
+            size_hint: .5, .05
+            pos_hint: {"x":.25}
+            on_release: app.root.current = "home"
+
+<Comment>:
+    name: "comments"
+    BoxLayout:
+
+        canvas:
+            Color:
+                rgb: .49, .44, .60
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        orientation: "vertical"
+        Label:
+            text: "Welcome to the comment writer"
+        BoxLayout:
+            TextInput:
+                id: comenti
+                hint_text: "Write the name of the recipe you would like to make a comment about"
+                multiline: False
+            TextInput:
+                id: comment
+                hint_text: "Write the commemnt here"
+                multiline: True
+        CommentButton:
+            text: "Enter"
+            on_press: self.cSave(comenti.text, comment.text)
+            on_release: comenti.text = ""
+        Button:
+            text: "Home"
+            on_release: app.root.current = "home"
+
+<SearchFor>:
+    name: "search"
+    BoxLayout:
+        orientation: "vertical"
+        canvas:
+            Color:
+                rgb: .49, .44, .60
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            text: "Welcome to the searcher"
+        Label:
+            id: output
+            text: "Found items will go here"
+        TextInput:
+            id: userInput
+            multiline: False
+            hint_text: "Type in the date or name of desired ingredient"
+        SearchButton:
+            text: "Search"
+            on_press: output.text = self.search(userInput.text)
+            on_release: userInput.text = ""
+        Button:
+            text: "Home"
+            on_release: app.root.current = "home"
+
+<All>:
+    name: "alli"
+    BoxLayout:
+        orientation: "vertical"
+        canvas:
+            Color:
+                rgb: .49, .44, .60
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    ShowAllStore:
+        text: self.returnAll()
+        pos_hint:{ "y" : .25}
+        multiline: True
+    Button:
+        text: "Home"
+        size_hint: 1, .25
+        on_release: app.root.current= "home"

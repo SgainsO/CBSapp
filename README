@@ -1,0 +1,7 @@
+Please install the requirements.txt before running this program
+
+Features: Save a recipe, Make comments about certain recipe.
+Search for a certain recipe. Show all recipes. Save to your
+google drive.
+
+This project was tested on PyCharm.
