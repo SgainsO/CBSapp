@@ -10,5 +10,6 @@
 * Save to your
 google drive.
 
+## Running infomation
 * This project was tested on PyCharm.
 * Please install the requirements.txt before running this program
